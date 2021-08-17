@@ -1,5 +1,6 @@
 package com.hendisantika.service;
 
+import com.hendisantika.employee.Employee;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,5 +14,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EmployeeService {
-
+    public void save(Employee employee) {
+        saveFile(employee.getDocument());
+        // save other employee data
+    }
 }
