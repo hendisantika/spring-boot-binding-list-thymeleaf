@@ -9,6 +9,10 @@
 
 ### Images Screen shot
 
+Home Page
+
+![Home Page](img/home.png "Home Page")
+
 Add New Book
 
 ![Add New Book](img/add.png "Add New Book")
