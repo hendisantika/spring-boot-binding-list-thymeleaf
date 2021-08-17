@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-binding-list-thymeleaf
@@ -42,5 +45,17 @@ public class BooksController {
         model.addAttribute("form", booksForm);
 
         return "createBooksForm";
+    }
+
+    @GetMapping(value = "/edit")
+    public String showEditForm(Model model) {
+        List<Book> books = new ArrayList<>();
+        bookService.findAll()
+                .iterator()
+                .forEachRemaining(books::add);
+
+        model.addAttribute("form", new BooksCreationDto(books));
+
+        return "editBooksForm";
     }
 }
