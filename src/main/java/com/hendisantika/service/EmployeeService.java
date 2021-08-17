@@ -2,6 +2,7 @@ package com.hendisantika.service;
 
 import com.hendisantika.employee.Employee;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +19,13 @@ public class EmployeeService {
         saveFile(employee.getDocument());
         // save other employee data
     }
+
+    private void saveFile(MultipartFile multipartFile) {
+        try {
+            saveToFilesystem(multipartFile);
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to save file", e);
+        }
+    }
+
 }
