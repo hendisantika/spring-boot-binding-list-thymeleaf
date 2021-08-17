@@ -1,5 +1,7 @@
 package com.hendisantika.controller;
 
+import com.hendisantika.model.Book;
+import com.hendisantika.model.BooksCreationDto;
 import com.hendisantika.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,5 +29,18 @@ public class BooksController {
         model.addAttribute("books", bookService.findAll());
 
         return "allBooks";
+    }
+
+    @GetMapping(value = "/create")
+    public String showCreateForm(Model model) {
+        BooksCreationDto booksForm = new BooksCreationDto();
+
+        for (int i = 1; i <= 3; i++) {
+            booksForm.addBook(new Book());
+        }
+
+        model.addAttribute("form", booksForm);
+
+        return "createBooksForm";
     }
 }
