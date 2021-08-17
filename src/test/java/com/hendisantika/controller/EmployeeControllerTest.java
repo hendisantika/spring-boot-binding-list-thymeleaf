@@ -53,5 +53,12 @@ class EmployeeControllerTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void givenRequestPartAndRequestParam_whenPost_thenReturns200OK() throws Exception {
+        mockMvc.perform(multipart("/employees/requestparam")
+                        .file(A_FILE)
+                        .param("name", "testname"))
+                .andExpect(status().isOk());
+    }
 
 }
