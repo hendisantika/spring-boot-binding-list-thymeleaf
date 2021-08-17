@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -57,5 +59,14 @@ public class BooksController {
         model.addAttribute("form", new BooksCreationDto(books));
 
         return "editBooksForm";
+    }
+
+    @PostMapping
+    public String saveBooks(@ModelAttribute BooksCreationDto form, Model model) {
+        bookService.saveAll(form.getBooks());
+
+        model.addAttribute("books", bookService.findAll());
+
+        return "redirect:/books/all";
     }
 }
