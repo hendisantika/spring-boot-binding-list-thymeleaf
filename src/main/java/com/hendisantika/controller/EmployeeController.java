@@ -4,12 +4,15 @@ import com.hendisantika.employee.Employee;
 import com.hendisantika.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by IntelliJ IDEA.
@@ -36,6 +39,13 @@ public class EmployeeController {
     public String saveEmployee(@ModelAttribute Employee employee) {
         employeeService.save(employee);
         return "employee/success";
+    }
+
+    @PostMapping(path = "/requestpart", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Object> saveEmployee(@RequestPart Employee employee, @RequestPart MultipartFile document) {
+        employee.setDocument(document);
+        employeeService.save(employee);
+        return ResponseEntity.ok().build();
     }
 
 }
