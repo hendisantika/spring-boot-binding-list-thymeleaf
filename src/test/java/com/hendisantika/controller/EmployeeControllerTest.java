@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.apache.http.entity.ContentType.DEFAULT_BINARY;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * Created by IntelliJ IDEA.
@@ -40,5 +41,17 @@ class EmployeeControllerTest {
                         .param("name", "testname"))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void givenEmployeeJsonAndMultipartFile_whenPostWithRequestPart_thenReturnsOK() throws Exception {
+        MockMultipartFile employeeJson = new MockMultipartFile("employee", null,
+                "application/json", "{\"name\": \"Emp Name\"}".getBytes());
+
+        mockMvc.perform(multipart("/employees/requestpart")
+                        .file(A_FILE)
+                        .file(employeeJson))
+                .andExpect(status().isOk());
+    }
+
 
 }
