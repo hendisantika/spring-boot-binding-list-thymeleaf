@@ -3,7 +3,9 @@ package com.hendisantika.service;
 import com.hendisantika.model.Book;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,4 +20,8 @@ import java.util.Map;
 @Service
 public class BookService {
     static Map<Long, Book> booksDB = new HashMap<>();
+
+    public List<Book> findAll() {
+        return new ArrayList<>(booksDB.values());
+    }
 }
