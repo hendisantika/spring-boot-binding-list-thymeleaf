@@ -24,3 +24,10 @@ List All Books
 Edit All Books
 
 ![Edit All Books](img/edit.png "Edit All Books")
+
+### Relevant articles
+
+- [Session Attributes in Spring MVC](https://www.baeldung.com/spring-mvc-session-attributes)
+- [Binding a List in Thymeleaf](https://www.baeldung.com/thymeleaf-list)
+- [Multipart Request Handling in Spring](https://www.baeldung.com/sprint-boot-multipart-requests)
+ 
