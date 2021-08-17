@@ -67,6 +67,6 @@ public class BooksController {
 
         model.addAttribute("books", bookService.findAll());
 
-        return "redirect:/books/all";
+        return "redirect:/books";
     }
 }
