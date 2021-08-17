@@ -33,13 +33,13 @@ public class EmployeeController {
     @GetMapping
     public String showEmployeeForm(Model model) {
         model.addAttribute("employee", new Employee());
-        return "employee/createEmployeeForm";
+        return "employees/createEmployeeForm";
     }
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String saveEmployee(@ModelAttribute Employee employee) {
         employeeService.save(employee);
-        return "employee/success";
+        return "employees/success";
     }
 
     @PostMapping(path = "/requestpart", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})

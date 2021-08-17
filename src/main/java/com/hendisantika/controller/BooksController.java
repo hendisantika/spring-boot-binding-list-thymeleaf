@@ -33,7 +33,7 @@ public class BooksController {
     public String showAll(Model model) {
         model.addAttribute("books", bookService.findAll());
 
-        return "allBooks";
+        return "books/allBooks";
     }
 
     @GetMapping(value = "/create")
@@ -46,7 +46,7 @@ public class BooksController {
 
         model.addAttribute("form", booksForm);
 
-        return "createBooksForm";
+        return "books/createBooksForm";
     }
 
     @GetMapping(value = "/edit")
@@ -58,7 +58,7 @@ public class BooksController {
 
         model.addAttribute("form", new BooksCreationDto(books));
 
-        return "editBooksForm";
+        return "books/editBooksForm";
     }
 
     @PostMapping
