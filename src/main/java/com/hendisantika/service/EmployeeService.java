@@ -4,6 +4,12 @@ import com.hendisantika.employee.Employee;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-binding-list-thymeleaf
@@ -25,6 +31,15 @@ public class EmployeeService {
             saveToFilesystem(multipartFile);
         } catch (Exception e) {
             throw new RuntimeException("Unable to save file", e);
+        }
+    }
+
+    private static void saveToFilesystem(MultipartFile multipartFile) throws IOException {
+        String dir = Files.createTempDirectory("tmpDir").toFile().getAbsolutePath();
+        File file = new File(dir + File.pathSeparator + multipartFile.getName());
+
+        try (OutputStream os = new FileOutputStream(file)) {
+            os.write(multipartFile.getBytes());
         }
     }
 
